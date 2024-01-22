@@ -1,0 +1,143 @@
+<html>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<title>Memer - Get Random Memes</title>
+<head>
+
+<style>
+body
+{
+	display:flex;
+	align-items:center;
+	flex-direction:column;
+	justify-content:center;
+	background:#eee;
+	
+	
+}
+.head
+{
+	background:#fff;
+	width:100%;
+	max-width: 610px;
+	background-color: #fff;
+	box-shadow: 0 0 3px #ccc;
+	text-align: center;
+	margin:5px;
+	border-radius:36px;
+}
+.main
+{
+	background:#fff;
+	width:100%;
+	max-width: 610px;
+	background-color: #fff;
+	box-shadow: 0 0 3px #ccc;
+	text-align: center;
+	margin:5px;
+	border-radius:36px;
+	height:60%;
+}
+
+.title
+{
+	font-size: 3.2em;
+	margin: 0 0 15px;
+	padding: 15px;
+	padding-bottom:0px;
+	color: #428bca;
+	font-family:Comic Sans MS;
+    
+}	
+.subtitle
+{
+	font-family:Georgia;
+	color:#666;
+	font-weight:bold;
+}
+.desc
+{
+font-weight:bold;
+font-family:Verdana;
+font-size:1em;
+margin:0px 5px 5px;
+float:right;
+color: grey;
+
+}
+.loader {
+  border: 16px solid transparent; /* Light grey */
+  border-top: 16px solid #428bca; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display:none;
+
+  display:flex;
+  
+  animation: spin 2s linear infinite;
+}
+.btn {
+  background-color: #428bca; 
+  border-radius: 17px;
+  border: none;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.disclaimer { 
+    display: none;
+}
+img[src="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"]
+     {
+        display: none;  
+    }
+</style>
+</head>
+<body onload="f1()">
+<div class="head"> <p class="title">Memer &nbsp &nbsp &nbsp &nbsp<button class="btn " onclick="f1()">New !</button></p>
+<p class="subtitle">Bored ! Will Generate Random meme for you</p>
+ </div>
+ <div class="loader" id="load"></div>
+<div class="main">
+ <img id="mbody" width="100%" max-width="500px" style="margin:3px>
+<hr color="white" size="0.5">
+
+<p class="desc" id="mauthor"></p>
+
+
+</div>
+<script>
+	
+	function f1()
+	{
+		
+		document.getElementById("mbody").style="display:none";
+		document.getElementById("mauthor").innerHTML=" ";
+		document.getElementById("load").style="display:block";
+
+		$.get("https://meme-api.herokuapp.com/gimme", function (data, status) {
+           
+			document.getElementById("load").style="display:none";
+			document.getElementById("mbody").src=data.url;
+			document.getElementById("mauthor").innerHTML="Author : "+data.subreddit;
+			document.getElementById("mbody").style="display:block";
+           
+        });
+
+		
+	}
+	
+</script>
+</body>
+</html>
